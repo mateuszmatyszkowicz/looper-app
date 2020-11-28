@@ -114,6 +114,7 @@ const MyFirstGrid = () => {
         <div key="c">
           <SingleGridLayout
             // id="c"
+            // @ts-ignore
             layout={layout[0]}
             width={memoWidth}
             updateLayout={() => null}

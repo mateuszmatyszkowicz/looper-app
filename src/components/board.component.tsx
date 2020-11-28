@@ -1,14 +1,17 @@
 import * as React from "react";
-import GridLayout, { Layout } from "react-grid-layout";
+import GridLayout from "react-grid-layout";
 import { differenceInCalendarDays, format } from "date-fns";
-import SingleGridLayout from "./components/single-grid-layout";
+import SingleGridLayout from "./single-grid-layout";
+import { LayoutElement } from "../types";
 
 const startDate = new Date(2020, 8, 25);
 const endDate = new Date(2020, 9, 3);
 
-const TestingPage = () => {
+
+
+const Board = () => {
   const mainGridRef = React.useRef<HTMLDivElement>(null);
-  // layout is an array of objects, see the demo for more complete usage
+
   const [layout, setLayout] = React.useState([
     // {
     //   i: "a",
@@ -17,10 +20,10 @@ const TestingPage = () => {
     //   w: differenceInCalendarDays(endDate, startDate) * 16,
     //   h: 1,
     // },
-    { i: "b", x: 4, y: 1, w: Infinity, h: 1 },
+    { i: "b", x: 4, y: 1, w: Infinity, h: 1, collapsed: false },
     // { i: "d", x: 1, y: 2, w: Infinity, h: 1, collapsed: true, isBounded: true },
     { i: "c", x: 1, y: 3, w: Infinity, h: 1, collapsed: true },
-  ] as (Layout & { collapsed?: boolean })[]);
+  ] as LayoutElement[]);
 
   const [viewCount, setViewCount] = React.useState(7);
   const memoWidth = React.useMemo(
@@ -30,7 +33,7 @@ const TestingPage = () => {
     [viewCount]
   );
 
-  const onChildrenChanged = (newLayout: Layout & { collapsed?: boolean }) => {
+  const onChildrenChanged = (newLayout: LayoutElement) => {
     setLayout(() =>
       layout.reduce((prev, curr) => {
         if (curr.i === newLayout.i) {
@@ -38,12 +41,12 @@ const TestingPage = () => {
         }
 
         return [...prev, curr];
-      }, [] as Layout[])
+      }, [] as LayoutElement[])
     );
   };
 
-  const [isDragging, setIsDragging] = React.useState(false);
-  const [isResizing, setIsResizing] = React.useState(false);
+  const [, setIsDragging] = React.useState(false);
+  const [, setIsResizing] = React.useState(false);
 
   const onItemClick = (e: any) => {
     // idiomatic way to prevent a click when resizing
@@ -74,8 +77,7 @@ const TestingPage = () => {
     }, 250);
   }, [layout]);
 
-  const onLayouteChange = (layout: GridLayout.Layout[]) => {
-    // console.log(layout);
+  const onLayouteChange = (layout: LayoutElement[]) => {
     setLayout(layout);
   };
 
@@ -83,8 +85,11 @@ const TestingPage = () => {
     return (
       <div key={el.i} data-grid={el.datagrid} onClick={() => onItemClick(el.i)}>
         {el.i !== "c" ? (
+            // Ticket bez subticketów
           <div>....</div>
         ) : (
+            // Ticket z subticketami
+            // 
           <SingleGridLayout
             layout={layout.filter((e) => e.i === "c")[0]}
             width={memoWidth}
@@ -94,6 +99,7 @@ const TestingPage = () => {
       </div>
     );
   };
+  
   return (
     <div>
       <div style={{ display: "flex" }}>
@@ -109,7 +115,7 @@ const TestingPage = () => {
             7 days
           </div>
           <div
-            style={{ color: viewCount != 7 ? "green" : "black" }}
+            style={{ color: viewCount !== 7 ? "green" : "black" }}
             onClick={() =>
               setViewCount(differenceInCalendarDays(endDate, startDate))
             }
@@ -118,7 +124,10 @@ const TestingPage = () => {
           </div>
         </div>
       </div>
-      <div ref={mainGridRef} style={{ position: "relative", width: memoWidth, paddingLeft: 130 }}>
+      <div
+        ref={mainGridRef}
+        style={{ position: "relative", width: memoWidth, paddingLeft: 130 }}
+      >
         <GridLayout
           margin={[0, 0]}
           containerPadding={[5, 0]}
@@ -142,4 +151,4 @@ const TestingPage = () => {
   );
 };
 
-export default TestingPage;
+export default Board;

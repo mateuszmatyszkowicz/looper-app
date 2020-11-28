@@ -1,11 +1,12 @@
 import * as React from "react";
 import GridLayout, { ItemCallback, Layout } from "react-grid-layout";
-import { differenceInCalendarDays, format } from "date-fns";
+import { differenceInCalendarDays } from "date-fns";
+import { LayoutElement } from "../types";
 
 type Props = {
-  layout: Layout & { collapsed?: boolean };
+  layout: LayoutElement;
   width: number;
-  updateLayout: (layout: Layout & { collapsed?: boolean }) => void;
+  updateLayout: (layout: LayoutElement) => void;
 };
 
 const issue = {
@@ -14,7 +15,7 @@ const issue = {
 };
 
 const layout2: Layout[] = [
-  { i: "parent", x: 0, y: 0, w: 18, h: 1, static: true},
+  { i: "parent", x: 0, y: 0, w: 18, h: 1, static: true },
   { i: "a", x: 0, y: 1, w: 3, h: 1 },
   { i: "b", x: 20, y: 2, w: 6, h: 1 },
   { i: "c", x: 30, y: 3, w: 10, h: 1 },
