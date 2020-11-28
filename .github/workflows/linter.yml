@@ -29,6 +29,10 @@ jobs:
     name: Semantic Versioning
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - name: Git Semantic Version
         uses: paulhatch/semantic-version@v3
         with:
