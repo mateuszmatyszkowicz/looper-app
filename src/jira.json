@@ -1,0 +1,744 @@
+{
+    "rapidViewId": 19,
+    "boardName": "BR board",
+    "statistics": {
+        "fieldConfigured": true,
+        "typeId": "issueCount",
+        "id": "",
+        "name": "Issue Count"
+    },
+    "columnsData": {
+        "rapidViewId": 19,
+        "columns": [
+            {
+                "id": 133,
+                "name": "To Do",
+                "statusIds": [
+                    "10111"
+                ],
+                "statisticsFieldValue": 5.0,
+                "isKanbanBacklogColumn": false
+            },
+            {
+                "id": 134,
+                "name": "In Progress",
+                "statusIds": [
+                    "3"
+                ],
+                "statisticsFieldValue": 1.0,
+                "isKanbanBacklogColumn": false
+            },
+            {
+                "id": 137,
+                "name": "Code Review",
+                "statusIds": [
+                    "10100"
+                ],
+                "max": 7.0,
+                "statisticsFieldValue": 0.0,
+                "isKanbanBacklogColumn": false
+            },
+            {
+                "id": 493,
+                "name": "Ready to QA",
+                "statusIds": [
+                    "10176"
+                ],
+                "statisticsFieldValue": 0.0,
+                "isKanbanBacklogColumn": false
+            },
+            {
+                "id": 136,
+                "name": "Review Internal",
+                "statusIds": [
+                    "10112"
+                ],
+                "max": 7.0,
+                "statisticsFieldValue": 0.0,
+                "isKanbanBacklogColumn": false
+            },
+            {
+                "id": 138,
+                "name": "Review Client",
+                "statusIds": [
+                    "10113"
+                ],
+                "max": 10.0,
+                "statisticsFieldValue": 1.0,
+                "isKanbanBacklogColumn": false
+            },
+            {
+                "id": 135,
+                "name": "Done",
+                "statusIds": [
+                    "10001",
+                    "10115"
+                ],
+                "statisticsFieldValue": 0.0,
+                "isKanbanBacklogColumn": false
+            }
+        ]
+    },
+    "swimlanesData": {
+        "rapidViewId": 19,
+        "swimlaneStrategy": "epic",
+        "epicSwimlanesData": {
+            "epics": [
+                "BR-2322"
+            ],
+            "epicNames": {
+                "BR-2322": "Standard path"
+            }
+        }
+    },
+    "issuesData": {
+        "rapidViewId": 19,
+        "activeFilters": [],
+        "activeSprints": [],
+        "issues": [
+            {
+                "id": 39860,
+                "key": "BR-2333",
+                "hidden": false,
+                "typeName": "Story",
+                "typeId": "10100",
+                "summary": "[Standard path] As an IC, I should be able to receive a popup window after clicking \"create contract proposal\".",
+                "typeUrl": "https://employeesgate.atlassian.net/images/icons/issuetypes/story.svg",
+                "priorityUrl": "https://employeesgate.atlassian.net/images/icons/priorities/medium.svg",
+                "priorityName": "Medium",
+                "done": false,
+                "assignee": "mateusz.matyszkowicz",
+                "assigneeKey": "mateusz.matyszkowicz",
+                "assigneeAccountId": "557058:1062ab17-33e5-4daf-aed8-a3b6cea61458",
+                "assigneeName": "Mateusz Matyszkowicz",
+                "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/557058:1062ab17-33e5-4daf-aed8-a3b6cea61458/62060f76-ffa5-4b08-8216-ad897f30b030/48",
+                "hasCustomUserAvatar": false,
+                "color": "#888720",
+                "flagged": false,
+                "epic": "BR-2322",
+                "epicField": {
+                    "id": "customfield_10003",
+                    "label": "Epic",
+                    "editable": false,
+                    "renderer": "epiclink",
+                    "epicKey": "BR-2322",
+                    "epicColor": "ghx-label-11",
+                    "text": "Standard path",
+                    "canRemoveEpic": false
+                },
+                "columnStatistic": {
+                    "statFieldId": "issueCount",
+                    "statFieldValue": {
+                        "value": 1.0,
+                        "text": "1.0"
+                    }
+                },
+                "estimateStatisticRequired": false,
+                "estimateStatistic": {
+                    "statFieldId": "customfield_10105",
+                    "statFieldValue": {
+                        "value": 5.0,
+                        "text": "5"
+                    }
+                },
+                "statusId": "3",
+                "statusName": "In Progress",
+                "statusUrl": "https://employeesgate.atlassian.net/images/icons/statuses/inprogress.png",
+                "status": {
+                    "id": "3",
+                    "name": "In Progress",
+                    "description": "This issue is being actively worked on at the moment by the assignee.",
+                    "iconUrl": "https://employeesgate.atlassian.net/images/icons/statuses/inprogress.png",
+                    "statusCategory": {
+                        "id": "4",
+                        "key": "indeterminate",
+                        "colorName": "yellow"
+                    }
+                },
+                "timeInColumn": {
+                    "enteredCurrentStatusTime": 1601033144249,
+                    "cumulativeDurationInColumn": 0
+                },
+                "fixVersions": [],
+                "projectId": 10305,
+                "linkedPagesCount": 0,
+                "extraFields": [
+                    {
+                        "id": "timeoriginalestimate",
+                        "label": "Original Estimate",
+                        "editable": false,
+                        "renderer": "html",
+                        "html": ""
+                    },
+                    {
+                        "id": "aggregatetimeoriginalestimate",
+                        "label": "Σ Original Estimate",
+                        "editable": false,
+                        "renderer": "html",
+                        "html": ""
+                    }
+                ]
+            },
+            {
+                "id": 40080,
+                "key": "BR-2336",
+                "hidden": false,
+                "typeName": "Story",
+                "typeId": "10100",
+                "summary": "[Standard path] As an IC I can create standard contract proposal and balance is not deducted from my account",
+                "typeUrl": "https://employeesgate.atlassian.net/images/icons/issuetypes/story.svg",
+                "priorityUrl": "https://employeesgate.atlassian.net/images/icons/priorities/medium.svg",
+                "priorityName": "Medium",
+                "done": false,
+                "hasCustomUserAvatar": false,
+                "color": "#888720",
+                "flagged": false,
+                "epic": "BR-2322",
+                "epicField": {
+                    "id": "customfield_10003",
+                    "label": "Epic",
+                    "editable": false,
+                    "renderer": "epiclink",
+                    "epicKey": "BR-2322",
+                    "epicColor": "ghx-label-11",
+                    "text": "Standard path",
+                    "canRemoveEpic": false
+                },
+                "columnStatistic": {
+                    "statFieldId": "issueCount",
+                    "statFieldValue": {
+                        "value": 1.0,
+                        "text": "1.0"
+                    }
+                },
+                "estimateStatisticRequired": false,
+                "estimateStatistic": {
+                    "statFieldId": "customfield_10105",
+                    "statFieldValue": {
+                        "value": 8.0,
+                        "text": "8"
+                    }
+                },
+                "statusId": "10111",
+                "statusName": "To Do",
+                "statusUrl": "https://employeesgate.atlassian.net/",
+                "status": {
+                    "id": "10111",
+                    "name": "To Do",
+                    "description": "Issue has been viewed by dev team and ready to be worked on with needed subtasks created and assigned to team member",
+                    "iconUrl": "https://employeesgate.atlassian.net/",
+                    "statusCategory": {
+                        "id": "2",
+                        "key": "new",
+                        "colorName": "blue-gray"
+                    }
+                },
+                "timeInColumn": {
+                    "enteredCurrentStatusTime": 1601022879119,
+                    "cumulativeDurationInColumn": 0
+                },
+                "fixVersions": [],
+                "projectId": 10305,
+                "linkedPagesCount": 0,
+                "extraFields": [
+                    {
+                        "id": "timeoriginalestimate",
+                        "label": "Original Estimate",
+                        "editable": false,
+                        "renderer": "html",
+                        "html": ""
+                    },
+                    {
+                        "id": "aggregatetimeoriginalestimate",
+                        "label": "Σ Original Estimate",
+                        "editable": false,
+                        "renderer": "html",
+                        "html": ""
+                    }
+                ]
+            },
+            {
+                "id": 39699,
+                "key": "BR-2326",
+                "hidden": false,
+                "typeName": "Bug",
+                "typeId": "10103",
+                "summary": "Not correctly aligned tooltip",
+                "typeUrl": "https://employeesgate.atlassian.net/secure/viewavatar?size=medium&avatarId=10303&avatarType=issuetype",
+                "priorityUrl": "https://employeesgate.atlassian.net/images/icons/priorities/medium.svg",
+                "priorityName": "Medium",
+                "done": false,
+                "assignee": "mateusz.matyszkowicz",
+                "assigneeKey": "mateusz.matyszkowicz",
+                "assigneeAccountId": "557058:1062ab17-33e5-4daf-aed8-a3b6cea61458",
+                "assigneeName": "Mateusz Matyszkowicz",
+                "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/557058:1062ab17-33e5-4daf-aed8-a3b6cea61458/62060f76-ffa5-4b08-8216-ad897f30b030/48",
+                "hasCustomUserAvatar": false,
+                "color": "#bfe4ff",
+                "flagged": false,
+                "columnStatistic": {
+                    "statFieldId": "issueCount",
+                    "statFieldValue": {
+                        "value": 1.0,
+                        "text": "1.0"
+                    }
+                },
+                "estimateStatisticRequired": false,
+                "estimateStatistic": {
+                    "statFieldId": "customfield_10105",
+                    "statFieldValue": {
+                        "value": 2.0,
+                        "text": "2"
+                    }
+                },
+                "statusId": "10111",
+                "statusName": "To Do",
+                "statusUrl": "https://employeesgate.atlassian.net/",
+                "status": {
+                    "id": "10111",
+                    "name": "To Do",
+                    "description": "Issue has been viewed by dev team and ready to be worked on with needed subtasks created and assigned to team member",
+                    "iconUrl": "https://employeesgate.atlassian.net/",
+                    "statusCategory": {
+                        "id": "2",
+                        "key": "new",
+                        "colorName": "blue-gray"
+                    }
+                },
+                "timeInColumn": {
+                    "enteredCurrentStatusTime": 1600670309298,
+                    "cumulativeDurationInColumn": 0
+                },
+                "fixVersions": [],
+                "projectId": 10305,
+                "linkedPagesCount": 0,
+                "extraFields": [
+                    {
+                        "id": "timeoriginalestimate",
+                        "label": "Original Estimate",
+                        "editable": false,
+                        "renderer": "html",
+                        "html": ""
+                    },
+                    {
+                        "id": "aggregatetimeoriginalestimate",
+                        "label": "Σ Original Estimate",
+                        "editable": false,
+                        "renderer": "html",
+                        "html": ""
+                    }
+                ]
+            },
+            {
+                "id": 40084,
+                "key": "BR-2338",
+                "hidden": false,
+                "typeName": "Story",
+                "typeId": "10100",
+                "summary": "[Standard path] As an IC I can recognise standard and premium contracts proposals in the application",
+                "typeUrl": "https://employeesgate.atlassian.net/images/icons/issuetypes/story.svg",
+                "priorityUrl": "https://employeesgate.atlassian.net/images/icons/priorities/medium.svg",
+                "priorityName": "Medium",
+                "done": false,
+                "assignee": "mateusz.matyszkowicz",
+                "assigneeKey": "mateusz.matyszkowicz",
+                "assigneeAccountId": "557058:1062ab17-33e5-4daf-aed8-a3b6cea61458",
+                "assigneeName": "Mateusz Matyszkowicz",
+                "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/557058:1062ab17-33e5-4daf-aed8-a3b6cea61458/62060f76-ffa5-4b08-8216-ad897f30b030/48",
+                "hasCustomUserAvatar": false,
+                "color": "#888720",
+                "flagged": false,
+                "epic": "BR-2322",
+                "epicField": {
+                    "id": "customfield_10003",
+                    "label": "Epic",
+                    "editable": false,
+                    "renderer": "epiclink",
+                    "epicKey": "BR-2322",
+                    "epicColor": "ghx-label-11",
+                    "text": "Standard path",
+                    "canRemoveEpic": false
+                },
+                "columnStatistic": {
+                    "statFieldId": "issueCount",
+                    "statFieldValue": {
+                        "value": 1.0,
+                        "text": "1.0"
+                    }
+                },
+                "estimateStatisticRequired": false,
+                "estimateStatistic": {
+                    "statFieldId": "customfield_10105",
+                    "statFieldValue": {
+                        "value": 3.0,
+                        "text": "3"
+                    }
+                },
+                "statusId": "10111",
+                "statusName": "To Do",
+                "statusUrl": "https://employeesgate.atlassian.net/",
+                "status": {
+                    "id": "10111",
+                    "name": "To Do",
+                    "description": "Issue has been viewed by dev team and ready to be worked on with needed subtasks created and assigned to team member",
+                    "iconUrl": "https://employeesgate.atlassian.net/",
+                    "statusCategory": {
+                        "id": "2",
+                        "key": "new",
+                        "colorName": "blue-gray"
+                    }
+                },
+                "timeInColumn": {
+                    "enteredCurrentStatusTime": 1601031498652,
+                    "cumulativeDurationInColumn": 0
+                },
+                "fixVersions": [],
+                "projectId": 10305,
+                "linkedPagesCount": 0,
+                "extraFields": [
+                    {
+                        "id": "timeoriginalestimate",
+                        "label": "Original Estimate",
+                        "editable": false,
+                        "renderer": "html",
+                        "html": ""
+                    },
+                    {
+                        "id": "aggregatetimeoriginalestimate",
+                        "label": "Σ Original Estimate",
+                        "editable": false,
+                        "renderer": "html",
+                        "html": ""
+                    }
+                ]
+            },
+            {
+                "id": 39556,
+                "key": "BR-2314",
+                "hidden": false,
+                "typeName": "Task",
+                "typeId": "10101",
+                "summary": "Investigate how we can get contact information for the contract after switching to Qiwa API V2",
+                "typeUrl": "https://employeesgate.atlassian.net/secure/viewavatar?size=medium&avatarId=10318&avatarType=issuetype",
+                "priorityUrl": "https://employeesgate.atlassian.net/images/icons/priorities/medium.svg",
+                "priorityName": "Medium",
+                "done": false,
+                "assignee": "karol.kasprzak",
+                "assigneeKey": "karol.kasprzak",
+                "assigneeAccountId": "5c98944efb30a57d93ace2ed",
+                "assigneeName": "Karol Kasprzak",
+                "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/5c98944efb30a57d93ace2ed/e22ada9a-d786-452c-a98b-e55daebbd9a4/48",
+                "hasCustomUserAvatar": false,
+                "color": "#cc0000",
+                "flagged": false,
+                "columnStatistic": {
+                    "statFieldId": "issueCount",
+                    "statFieldValue": {
+                        "value": 1.0,
+                        "text": "1.0"
+                    }
+                },
+                "estimateStatisticRequired": false,
+                "estimateStatistic": {
+                    "statFieldId": "customfield_10105",
+                    "statFieldValue": {
+                        "text": ""
+                    }
+                },
+                "statusId": "10111",
+                "statusName": "To Do",
+                "statusUrl": "https://employeesgate.atlassian.net/",
+                "status": {
+                    "id": "10111",
+                    "name": "To Do",
+                    "description": "Issue has been viewed by dev team and ready to be worked on with needed subtasks created and assigned to team member",
+                    "iconUrl": "https://employeesgate.atlassian.net/",
+                    "statusCategory": {
+                        "id": "2",
+                        "key": "new",
+                        "colorName": "blue-gray"
+                    }
+                },
+                "timeInColumn": {
+                    "enteredCurrentStatusTime": 1600341545614,
+                    "cumulativeDurationInColumn": 0
+                },
+                "fixVersions": [],
+                "projectId": 10305,
+                "linkedPagesCount": 0,
+                "extraFields": [
+                    {
+                        "id": "timeoriginalestimate",
+                        "label": "Original Estimate",
+                        "editable": false,
+                        "renderer": "html",
+                        "html": "1 hour"
+                    },
+                    {
+                        "id": "aggregatetimeoriginalestimate",
+                        "label": "Σ Original Estimate",
+                        "editable": false,
+                        "renderer": "html",
+                        "html": "1 hour"
+                    }
+                ]
+            },
+            {
+                "id": 39599,
+                "key": "BR-2325",
+                "hidden": false,
+                "typeName": "Task",
+                "typeId": "10101",
+                "summary": "Standard path designed",
+                "typeUrl": "https://employeesgate.atlassian.net/secure/viewavatar?size=medium&avatarId=10318&avatarType=issuetype",
+                "priorityUrl": "https://employeesgate.atlassian.net/images/icons/priorities/medium.svg",
+                "priorityName": "Medium",
+                "done": false,
+                "assignee": "claudia.wensierska",
+                "assigneeKey": "claudia.wensierska",
+                "assigneeAccountId": "5b556cc1d2a2f82da138d911",
+                "assigneeName": "Claudia Wensierska",
+                "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/5b556cc1d2a2f82da138d911/fefbef6f-b697-41dd-bb6b-1a9a4cf573e5/48",
+                "hasCustomUserAvatar": false,
+                "color": "#cc0000",
+                "flagged": false,
+                "epic": "BR-2322",
+                "epicField": {
+                    "id": "customfield_10003",
+                    "label": "Epic",
+                    "editable": false,
+                    "renderer": "epiclink",
+                    "epicKey": "BR-2322",
+                    "epicColor": "ghx-label-11",
+                    "text": "Standard path",
+                    "canRemoveEpic": false
+                },
+                "columnStatistic": {
+                    "statFieldId": "issueCount",
+                    "statFieldValue": {
+                        "value": 1.0,
+                        "text": "1.0"
+                    }
+                },
+                "estimateStatisticRequired": false,
+                "estimateStatistic": {
+                    "statFieldId": "customfield_10105",
+                    "statFieldValue": {
+                        "value": 5.0,
+                        "text": "5"
+                    }
+                },
+                "statusId": "10113",
+                "statusName": "Review Client",
+                "statusUrl": "https://employeesgate.atlassian.net/",
+                "status": {
+                    "id": "10113",
+                    "name": "Review Client",
+                    "description": "This status is managed internally by Jira Software",
+                    "iconUrl": "https://employeesgate.atlassian.net/",
+                    "statusCategory": {
+                        "id": "4",
+                        "key": "indeterminate",
+                        "colorName": "yellow"
+                    }
+                },
+                "timeInColumn": {
+                    "enteredCurrentStatusTime": 1600944879935,
+                    "cumulativeDurationInColumn": 3064077
+                },
+                "fixVersions": [],
+                "projectId": 10305,
+                "linkedPagesCount": 0,
+                "extraFields": [
+                    {
+                        "id": "timeoriginalestimate",
+                        "label": "Original Estimate",
+                        "editable": false,
+                        "renderer": "html",
+                        "html": ""
+                    },
+                    {
+                        "id": "aggregatetimeoriginalestimate",
+                        "label": "Σ Original Estimate",
+                        "editable": false,
+                        "renderer": "html",
+                        "html": ""
+                    }
+                ]
+            },
+            {
+                "id": 39810,
+                "key": "BR-2329",
+                "hidden": false,
+                "typeName": "Task",
+                "typeId": "10101",
+                "summary": "Access Control due to new role B2C in our system",
+                "typeUrl": "https://employeesgate.atlassian.net/secure/viewavatar?size=medium&avatarId=10318&avatarType=issuetype",
+                "priorityUrl": "https://employeesgate.atlassian.net/images/icons/priorities/medium.svg",
+                "priorityName": "Medium",
+                "done": false,
+                "assignee": "pawel.gwozdecki",
+                "assigneeKey": "pawel.gwozdecki",
+                "assigneeAccountId": "5d6ca7da081fdf0db6e87c6b",
+                "assigneeName": "Paweł Gwozdecki",
+                "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/5d6ca7da081fdf0db6e87c6b/8b27837d-62ca-48cf-bf89-47eb39b7427f/48",
+                "hasCustomUserAvatar": false,
+                "color": "#cc0000",
+                "flagged": false,
+                "columnStatistic": {
+                    "statFieldId": "issueCount",
+                    "statFieldValue": {
+                        "value": 1.0,
+                        "text": "1.0"
+                    }
+                },
+                "estimateStatisticRequired": false,
+                "estimateStatistic": {
+                    "statFieldId": "customfield_10105",
+                    "statFieldValue": {
+                        "value": 2.0,
+                        "text": "2"
+                    }
+                },
+                "statusId": "10111",
+                "statusName": "To Do",
+                "statusUrl": "https://employeesgate.atlassian.net/",
+                "status": {
+                    "id": "10111",
+                    "name": "To Do",
+                    "description": "Issue has been viewed by dev team and ready to be worked on with needed subtasks created and assigned to team member",
+                    "iconUrl": "https://employeesgate.atlassian.net/",
+                    "statusCategory": {
+                        "id": "2",
+                        "key": "new",
+                        "colorName": "blue-gray"
+                    }
+                },
+                "timeInColumn": {
+                    "enteredCurrentStatusTime": 1600762173610,
+                    "cumulativeDurationInColumn": 0
+                },
+                "fixVersions": [],
+                "projectId": 10305,
+                "linkedPagesCount": 0,
+                "extraFields": [
+                    {
+                        "id": "timeoriginalestimate",
+                        "label": "Original Estimate",
+                        "editable": false,
+                        "renderer": "html",
+                        "html": ""
+                    },
+                    {
+                        "id": "aggregatetimeoriginalestimate",
+                        "label": "Σ Original Estimate",
+                        "editable": false,
+                        "renderer": "html",
+                        "html": ""
+                    }
+                ]
+            }
+        ],
+        "projects": [
+            {
+                "id": 10305,
+                "key": "BR",
+                "name": "Bulk Request"
+            }
+        ],
+        "missingParents": [],
+        "canRelease": false,
+        "hasBulkChangePermission": true,
+        "isIssueLimitExceeded": false
+    },
+    "orderData": {
+        "rapidViewId": 19,
+        "rankable": true,
+        "rankCustomFieldId": 10104,
+        "canRankPerProject": [
+            {
+                "projectId": 10305,
+                "projectKey": "BR",
+                "canRank": true
+            }
+        ]
+    },
+    "sprintsData": {
+        "rapidViewId": 19,
+        "sprints": [
+            {
+                "id": 472,
+                "sequence": 472,
+                "name": "BR Sprint 69",
+                "state": "ACTIVE",
+                "linkedPagesCount": 0,
+                "goal": "Istiqdam Company can create a standard contract proposal.",
+                "startDate": "25/Sep/20 2:17 PM",
+                "endDate": "01/Oct/20 4:17 PM",
+                "isoStartDate": "2020-09-25T14:17:09+0300",
+                "isoEndDate": "2020-10-01T16:17:00+0300",
+                "completeDate": "None",
+                "isoCompleteDate": "None",
+                "canUpdateSprint": true,
+                "remoteLinks": [],
+                "daysRemaining": 3
+            }
+        ],
+        "canManageSprints": true
+    },
+    "versionData": {
+        "versionsPerProject": {
+            "10305": [
+                {
+                    "id": 10135,
+                    "name": "H2 2019",
+                    "description": "All ICs are working in the system on daily basis",
+                    "sequence": 2,
+                    "released": false
+                },
+                {
+                    "id": 10102,
+                    "name": "Release 1",
+                    "description": "Realease 1",
+                    "sequence": 1,
+                    "released": true
+                },
+                {
+                    "id": 10147,
+                    "name": "Soft launch",
+                    "description": "",
+                    "sequence": 3,
+                    "released": true
+                },
+                {
+                    "id": 10224,
+                    "name": "Release 2",
+                    "description": "",
+                    "sequence": 4,
+                    "released": false
+                }
+            ]
+        },
+        "canCreateVersion": true
+    },
+    "etagData": {
+        "rapidViewId": 19,
+        "issueCount": 7,
+        "lastUpdated": 1601033144228,
+        "quickFilters": "[]",
+        "sprints": "[]",
+        "etag": "19,1601033144228,[],[],7,117481153",
+        "boardConfigsHash": 117481153
+    },
+    "capabilities": {
+        "BACKLOG": true,
+        "REPORTS": true,
+        "PARALLEL_SPRINTS": false,
+        "SPRINTS": true,
+        "ON_CALL_SCHEDULE": false,
+        "ESTIMATION": false,
+        "REOPEN_SPRINTS": true
+    },
+    "issueParentAssociations": [],
+    "oldDoneIssuesCutoff": "NONE"
+}
