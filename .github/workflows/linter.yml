@@ -37,7 +37,7 @@ jobs:
         uses: paulhatch/semantic-version@v3
         with:
           # The branch to count commits on
-          branch: "master"
+          branch: "main"
           # The prefix to use to identify tags
           tag_prefix: "v"
           # A string which, if present in a git commit, indicates that a change represents a
