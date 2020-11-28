@@ -30,7 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Git Semantic Version
-      - uses: paulhatch/semantic-version@v3
+        uses: paulhatch/semantic-version@v3
         with:
           # The branch to count commits on
           branch: "master"
