@@ -1,5 +1,5 @@
 import React from "react";
-import { useSetRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { appState } from "../atoms";
 import { LayoutElement, Ticket } from "../types";
 import DissmissableOverlay from "./dismissable-overlay.component";
@@ -11,7 +11,7 @@ type CreateTicketModalProps = {
 };
 
 const CreateTicketModal = ({ isOpen, onClose }: CreateTicketModalProps) => {
-  const setAppState = useSetRecoilState(appState);
+  const [state, setAppState] = useRecoilState(appState);
 
   const createNewTicket = () => {
     const id = `${new Date().getTime()}`;
@@ -34,6 +34,18 @@ const CreateTicketModal = ({ isOpen, onClose }: CreateTicketModalProps) => {
         [id]: Ticket("nowy ticket"),
       },
     }));
+  };
+
+  const removeTicket = (ticketId: string) => {
+    setAppState((state) => {
+      const { [ticketId]: _, ...tickets } = state.tickets;
+      const layout = state.layout.filter((l) => l.i !== ticketId);
+      return {
+        ...state,
+        tickets,
+        layout,
+      };
+    });
   };
   return (
     <div>
@@ -77,24 +89,12 @@ const CreateTicketModal = ({ isOpen, onClose }: CreateTicketModalProps) => {
                     <div className="p-5">
                       <button onClick={createNewTicket}>Add new item</button>
                     </div>
-                    <div>
-                      <input
-                        className="rounded-lg overflow-hidden appearance-none bg-gray-400 dark:bg-gray-900 h-3 w-128"
-                        type="range"
-                        min="5"
-                        max="40"
-                        step="5"
-                        name="itemsPerPage"
-                        data-testid="items-per-page"
-                        // onChange={onItemsPeraPageChange}
-                        // value={appState.itemsPerPage}
-                      />
-                      <label
-                        htmlFor="itemsPerPage"
-                        className="text-sm text-gray-700 dark:text-white"
-                      >
-                        {/* Items per page ({appState.itemsPerPage}) */}
-                      </label>
+                    <div className="p-5">
+                      {state.layout.map((l) => (
+                        <button onClick={() => removeTicket(l.i)}>
+                          Remove {l.i}
+                        </button>
+                      ))}
                     </div>
                   </div>
                 </div>
