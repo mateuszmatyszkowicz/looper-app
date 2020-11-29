@@ -21,3 +21,15 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+
+
+build/
+npm-debug.log
+.idea
+.eslintcache
+.cache
+.vscode
+.temp-eslintcache
+yarn.lock
+package-lock.json
