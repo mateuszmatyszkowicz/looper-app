@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -12,24 +14,35 @@
     "@types/react-dom": "^16.9.8",
     "autoprefixer": "^10.0.4",
     "date-fns": "^2.16.1",
+    "husky": "^4.3.0",
     "jira.js": "^1.6.2",
     "postcss": "^8.1.10",
+    "postcss-cli": "^8.3.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-grid-layout": "^1.2.0",
     "react-scripts": "4.0.1",
     "recoil": "^0.1.2",
+    "standard-version": "^9.0.0",
     "tailwindcss": "^2.0.1",
     "typescript": "~4.0.5",
-    "web-vitals": "^0.2.4",
-    "postcss-cli": "^8.3.0"
+    "web-vitals": "^0.2.4"
   },
   "scripts": {
     "start": "npm run watch:css && react-scripts start",
     "build": "npm run watch:css && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "watch:css": "postcss src/tailwindcss.css -o src/index.css"
+    "watch:css": "postcss src/tailwindcss.css -o src/index.css",
+    "release": "standard-version",
+    "release:minor": "standard-version --release-as minor",
+    "release:patch": "standard-version --release-as patch",
+    "release:major": "standard-version --release-as major"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
   },
   "eslintConfig": {
     "extends": [
