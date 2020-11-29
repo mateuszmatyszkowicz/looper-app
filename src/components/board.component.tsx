@@ -3,27 +3,29 @@ import GridLayout from "react-grid-layout";
 import { differenceInCalendarDays, format } from "date-fns";
 import SingleGridLayout from "./single-grid-layout";
 import { LayoutElement } from "../types";
+import { useRecoilState } from "recoil";
+import { appState } from "../atoms";
 
 const startDate = new Date(2020, 8, 25);
 const endDate = new Date(2020, 9, 3);
 
-
-
 const Board = () => {
+  const [state, setState] = useRecoilState(appState);
+  const layout = state.layout;
   const mainGridRef = React.useRef<HTMLDivElement>(null);
 
-  const [layout, setLayout] = React.useState([
-    // {
-    //   i: "a",
-    //   x: 0,
-    //   y: 0,
-    //   w: differenceInCalendarDays(endDate, startDate) * 16,
-    //   h: 1,
-    // },
-    { i: "b", x: 4, y: 1, w: Infinity, h: 1, collapsed: false },
-    // { i: "d", x: 1, y: 2, w: Infinity, h: 1, collapsed: true, isBounded: true },
-    { i: "c", x: 1, y: 3, w: Infinity, h: 1, collapsed: true },
-  ] as LayoutElement[]);
+  const setLayoutState = (newLayout: LayoutElement) => {
+    setState((state) => ({
+      ...state,
+      layout: state.layout.reduce((prev, curr) => {
+        if (curr.i === newLayout.i) {
+          return [...prev, newLayout];
+        }
+
+        return [...prev, curr];
+      }, [] as LayoutElement[]),
+    }));
+  };
 
   const [viewCount, setViewCount] = React.useState(7);
   const memoWidth = React.useMemo(
@@ -34,21 +36,14 @@ const Board = () => {
   );
 
   const onChildrenChanged = (newLayout: LayoutElement) => {
-    setLayout(() =>
-      layout.reduce((prev, curr) => {
-        if (curr.i === newLayout.i) {
-          return [...prev, newLayout];
-        }
-
-        return [...prev, curr];
-      }, [] as LayoutElement[])
-    );
+    setLayoutState(newLayout);
   };
 
   const [, setIsDragging] = React.useState(false);
   const [, setIsResizing] = React.useState(false);
 
   const onItemClick = (e: any) => {
+    console.log(`onItemClick: ${e}`);
     // idiomatic way to prevent a click when resizing
   };
 
@@ -78,18 +73,18 @@ const Board = () => {
   }, [layout]);
 
   const onLayouteChange = (layout: LayoutElement[]) => {
-    setLayout(layout);
+    setState((state) => ({ ...state, layout }));
   };
 
   const createElement = (el: any) => {
     return (
       <div key={el.i} data-grid={el.datagrid} onClick={() => onItemClick(el.i)}>
         {el.i !== "c" ? (
-            // Ticket bez subticketów
+          // Ticket bez subticketów
           <div>....</div>
         ) : (
-            // Ticket z subticketami
-            // 
+          // Ticket z subticketami
+          //
           <SingleGridLayout
             layout={layout.filter((e) => e.i === "c")[0]}
             width={memoWidth}
@@ -99,7 +94,7 @@ const Board = () => {
       </div>
     );
   };
-  
+
   return (
     <div>
       <div style={{ display: "flex" }}>

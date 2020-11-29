@@ -15,4 +15,6 @@ export const Ticket = (name: string) => ({
 export interface Ticket extends ReturnType<typeof Ticket> {}
 
 
+export type TicketDictorinary = Record<string, Ticket>;
+
 export type LayoutElement = Layout & { collapsed: boolean}
