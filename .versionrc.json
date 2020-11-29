@@ -10,6 +10,6 @@
       {"type": "test", "hidden": true}
     ],
     "commitUrlFormat": "https://github.com/mateuszmatyszkowicz/looper-app/commit/{{hash}}",
-    "compareUrlFormat": "https://github.com/mateuszmatyszkowicz/looper-app/commit/{{previousTag}}...{{currentTag}}"
+    "compareUrlFormat": "https://github.com/mateuszmatyszkowicz/looper-app/compare/{{previousTag}}...{{currentTag}}"
   }
   
