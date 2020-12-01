@@ -27,6 +27,7 @@ const CreateTicketModal = ({ isOpen, onClose }: CreateTicketModalProps) => {
           w: Infinity,
           h: 1,
           collapsed: false,
+          // resizeHandles: ['e', 'w']
         } as LayoutElement,
       ],
       tickets: {

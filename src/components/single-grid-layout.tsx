@@ -1,12 +1,11 @@
 import * as React from "react";
 import GridLayout, { ItemCallback, Layout } from "react-grid-layout";
 import { differenceInCalendarDays } from "date-fns";
-import { LayoutElement } from "../types";
 
 type Props = {
-  layout: LayoutElement;
+  layout: Layout;
   width: number;
-  updateLayout: (layout: LayoutElement) => void;
+  updateLayout: (layout: Layout) => void;
 };
 
 const issue = {
@@ -14,17 +13,51 @@ const issue = {
   endDate: new Date(2020, 9, 3),
 };
 
-const layout2: Layout[] = [
-  { i: "parent", x: 0, y: 0, w: 18, h: 1, static: true },
-  { i: "a", x: 0, y: 1, w: 3, h: 1 },
-  { i: "b", x: 20, y: 2, w: 6, h: 1 },
-  { i: "c", x: 30, y: 3, w: 10, h: 1 },
-];
+const LAYOUTS: Record<string, Layout[]> = {
+  d: [
+    {
+      i: "parent",
+      x: 0,
+      y: 0,
+      w: Infinity,
+      h: 1,
+      static: true,
+      isResizable: true,
+    },
+    { i: "a", x: 0, y: 1, w: 3, h: 1 },
+    { i: "c", x: 30, y: 2, w: 10, h: 1 },
+  ],
+  b: [
+    {
+      i: "parent",
+      x: 0,
+      y: 0,
+      w: Infinity,
+      h: 1,
+      static: true,
+      isResizable: true,
+    },
+    { i: "a", x: 0, y: 1, w: 3, h: 1 },
+  ],
+  c: [
+    {
+      i: "parent",
+      x: 0,
+      y: 0,
+      w: Infinity,
+      h: 1,
+      static: true,
+      isResizable: true,
+    },
+  ],
+};
 
 const SingleGridLayout = ({ layout, width, updateLayout }: Props) => {
+  const layout2 = LAYOUTS[layout.i];
+  // console.log(layout.i);?
+  // console.log("l2", layout2);?
   const { startDate, endDate } = issue;
-  const { collapsed } = layout;
-  const [isCollapsed, setIsCollapsed] = React.useState(collapsed);
+  const [isCollapsed, setIsCollapsed] = React.useState(false);
 
   React.useEffect(() => {
     if (isCollapsed) {
@@ -34,6 +67,7 @@ const SingleGridLayout = ({ layout, width, updateLayout }: Props) => {
 
       updateLayout({ ...layout, h: newHeigh });
     }
+    // eslint-disable-next-line
   }, [isCollapsed]);
 
   const onDragStart: ItemCallback = (...args) => {
@@ -70,23 +104,25 @@ const SingleGridLayout = ({ layout, width, updateLayout }: Props) => {
             >
               <div style={{ width: 30, height: 30, background: "gray" }} />
             </div>
-            <div
-              style={{
-                position: "absolute",
-                right: 0,
-                top: 0,
-                bottom: 0,
-                display: "flex",
-                height: "100%",
-                background: "yellow",
-                transform: "translateX(100%)",
-              }}
-              onClick={(e) => {
-                setIsCollapsed(!isCollapsed);
-              }}
-            >
-              <div>{isCollapsed ? "collapsed" : "notcollapsed"}</div>
-            </div>
+            {layout2.length > 1 && (
+              <div
+                style={{
+                  position: "absolute",
+                  right: 0,
+                  top: 0,
+                  bottom: 0,
+                  display: "flex",
+                  height: "100%",
+                  background: "yellow",
+                  transform: "translateX(100%)",
+                }}
+                onClick={(e) => {
+                  setIsCollapsed(!isCollapsed);
+                }}
+              >
+                <div>{isCollapsed ? "collapsed" : "notcollapsed"}</div>
+              </div>
+            )}
           </>
         ) : null}
         <span className="text">{layout.i} as</span>
@@ -98,12 +134,13 @@ const SingleGridLayout = ({ layout, width, updateLayout }: Props) => {
     <GridLayout
       compactType={null}
       preventCollision={false}
-      margin={[0, 0]}
+      margin={[0, 5]}
+      containerPadding={[0, 0]}
       className="single-grid-layout"
       layout={layout2}
       cols={differenceInCalendarDays(endDate, startDate) * 16}
       width={width}
-      maxRows={4}
+      maxRows={layout2.length}
       rowHeight={30}
       resizeHandles={["w", "e"]}
       onDragStart={onDragStart}

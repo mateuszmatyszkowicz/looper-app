@@ -10793,6 +10793,11 @@ rechoir@^0.6.2:
   dependencies:
     resolve "^1.1.6"
 
+recoil-persist@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/recoil-persist/-/recoil-persist-0.7.0.tgz#0720490888c582f546c818eb3364a009918650cf"
+  integrity sha512-Jc0IFSjmT1h5gQGX8n9XLjQDNstovVUmeAQTlgoX6VnmUMrWjdYn7lOvQg+qHejqAlLcZCzKxCkNbJrIXJ9EIQ==
+
 recoil@^0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/recoil/-/recoil-0.1.2.tgz#844c612f535826dbe54c977761a67ded16f6d063"

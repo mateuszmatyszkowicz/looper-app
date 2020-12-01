@@ -1,5 +1,5 @@
 import * as React from "react";
-import GridLayout from "react-grid-layout";
+import GridLayout, { Layout } from "react-grid-layout";
 import { differenceInCalendarDays, format } from "date-fns";
 import SingleGridLayout from "./single-grid-layout";
 import { LayoutElement } from "../types";
@@ -13,8 +13,9 @@ const Board = () => {
   const [state, setState] = useRecoilState(appState);
   const layout = state.layout;
   const mainGridRef = React.useRef<HTMLDivElement>(null);
-
-  const setLayoutState = (newLayout: LayoutElement) => {
+  const boardRef = React.useRef<HTMLDivElement>(null);
+  const [boardWidth, setBoardWidth] = React.useState(600);
+  const setLayoutState = (newLayout: Layout) => {
     setState((state) => ({
       ...state,
       layout: state.layout.reduce((prev, curr) => {
@@ -23,19 +24,24 @@ const Board = () => {
         }
 
         return [...prev, curr];
-      }, [] as LayoutElement[]),
+      }, [] as Layout[]),
     }));
   };
+
+  React.useEffect(() => {
+    if (boardRef.current) {
+      setBoardWidth(boardRef.current.getBoundingClientRect().width);
+    }
+  }, [boardRef]);
 
   const [viewCount, setViewCount] = React.useState(7);
   const memoWidth = React.useMemo(
     () =>
-      (differenceInCalendarDays(endDate, startDate) / viewCount) *
-      window.innerWidth,
-    [viewCount]
+      (differenceInCalendarDays(endDate, startDate) / viewCount) * boardWidth,
+    [viewCount, boardWidth]
   );
 
-  const onChildrenChanged = (newLayout: LayoutElement) => {
+  const onChildrenChanged = (newLayout: Layout) => {
     setLayoutState(newLayout);
   };
 
@@ -43,7 +49,7 @@ const Board = () => {
   const [, setIsResizing] = React.useState(false);
 
   const onItemClick = (e: any) => {
-    console.log(`onItemClick: ${e}`);
+    // console.log(`onItemClick: ${e}`);
     // idiomatic way to prevent a click when resizing
   };
 
@@ -79,25 +85,29 @@ const Board = () => {
   const createElement = (el: any) => {
     return (
       <div key={el.i} data-grid={el.datagrid} onClick={() => onItemClick(el.i)}>
-        {el.i !== "c" ? (
-          // Ticket bez subticketów
+        {/* {el.i !== "c" ? (
           <div>....</div>
         ) : (
-          // Ticket z subticketami
-          //
           <SingleGridLayout
-            layout={layout.filter((e) => e.i === "c")[0]}
+            layout={layout.filter((e) => e.i === el.i)[0]}
             width={memoWidth}
             updateLayout={onChildrenChanged}
           />
-        )}
+        )} */}
+
+        <SingleGridLayout
+          layout={layout.filter((e) => e.i === el.i)[0]}
+          width={memoWidth}
+          updateLayout={onChildrenChanged}
+        />
       </div>
     );
   };
 
+
   return (
     <div>
-      <div style={{ display: "flex" }}>
+      <div style={{ display: "flex", background: "white" }}>
         {format(startDate, "iiii").toString()}
         {differenceInCalendarDays(endDate, startDate)}
         {format(endDate, "iiii").toString()}
@@ -119,28 +129,30 @@ const Board = () => {
           </div>
         </div>
       </div>
-      <div
-        ref={mainGridRef}
-        style={{ position: "relative", width: memoWidth, paddingLeft: 130 }}
-      >
-        <GridLayout
-          margin={[0, 0]}
-          containerPadding={[5, 0]}
-          className="layout"
-          layout={layout}
-          cols={differenceInCalendarDays(endDate, startDate) * 16}
-          rowHeight={30}
-          width={memoWidth}
-          onLayoutChange={onLayouteChange}
-          resizeHandles={["w", "e"]}
-          onDrag={onDrag}
-          onDragStop={onDragStop}
-          onResize={onResizeStart}
-          onResizeStop={onResizeStop}
+      <div ref={boardRef} style={{ maxWidth: 600 }}>
+        <div
+          ref={mainGridRef}
+          style={{ position: "relative", width: memoWidth, paddingLeft: 130 }}
         >
-          {layout.map((e: any) => createElement(e))}
-        </GridLayout>
-        <div className="gantt-bg"></div>
+          <GridLayout
+            margin={[0, 5]}
+            containerPadding={[0, 10]}
+            className="layout"
+            layout={layout}
+            cols={differenceInCalendarDays(endDate, startDate) * 16}
+            rowHeight={30}
+            width={memoWidth}
+            onLayoutChange={onLayouteChange}
+            resizeHandles={[]}
+            onDrag={onDrag}
+            onDragStop={onDragStop}
+            onResize={onResizeStart}
+            onResizeStop={onResizeStop}
+          >
+            {layout.map((e: any) => createElement(e))}
+          </GridLayout>
+          <div className="gantt-bg"></div>
+        </div>
       </div>
     </div>
   );

@@ -14,7 +14,6 @@ export const Ticket = (name: string) => ({
 // eslint-disable-next-line
 export interface Ticket extends ReturnType<typeof Ticket> {}
 
-
 export type TicketDictorinary = Record<string, Ticket>;
 
-export type LayoutElement = Layout & { collapsed: boolean}
+export type LayoutElement = Layout & { collapsed: boolean; sublay: Layout[] };

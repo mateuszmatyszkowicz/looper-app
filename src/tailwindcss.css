@@ -19,7 +19,7 @@ body {
   }
   
   .layout .react-grid-item {
-    background-color: #fbfcfd;
+    background-color: none;
   }
   
   .layout2 .react-grid-item {
