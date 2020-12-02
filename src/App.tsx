@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 // import { Client } from "jira.js";
 import "../node_modules/react-grid-layout/css/styles.css";
@@ -7,12 +7,37 @@ import "../node_modules/react-resizable/css/styles.css";
 import Board from "./components/board.component";
 import Button from "./components/button";
 import CreateTicketModal from "./components/create-ticket.componen";
+import { useLocalStorage } from "./core/use-local-storage.hook";
+import {
+  useRecoilState,
+  useRecoilTransactionObserver_UNSTABLE,
+  useSetRecoilState,
+} from "recoil";
+import { appState } from "./atoms";
 // import { Ticket } from "./types";
 
 // const JIRA_API_TOKEN = "BArK8yCqQhHuYbuqova6F0D4";
 // const JIRA_HOST = "https://employeesgate.atlassian.net";
 
 function App() {
+  const [state, setState] = useLocalStorage("app-state", {
+    layout: [],
+    nestedLayouts: {},
+    tickets: {},
+  });
+  const [appstate, setAppState] = useRecoilState(appState);
+
+  useEffect(() => {
+    console.log("LocalStorage: ", state);
+    setAppState(state);
+    // eslint-disable-next-line
+  }, []);
+
+  useEffect(() => {
+    setState(appstate);
+    // eslint-disable-next-line
+  }, [appstate]);
+
   // const client = useRef(
   //   new Client({
   //     host: JIRA_HOST,

@@ -104,6 +104,11 @@ const Board = () => {
     );
   };
 
+  console.log('stae',state)
+  if (state.layout === undefined) {
+    console.log('ada')
+    return null;
+  }
 
   return (
     <div>

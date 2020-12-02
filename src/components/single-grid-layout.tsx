@@ -1,6 +1,8 @@
 import * as React from "react";
 import GridLayout, { ItemCallback, Layout } from "react-grid-layout";
 import { differenceInCalendarDays } from "date-fns";
+import {  useRecoilValue } from "recoil";
+import { appState } from "../atoms";
 
 type Props = {
   layout: Layout;
@@ -13,47 +15,10 @@ const issue = {
   endDate: new Date(2020, 9, 3),
 };
 
-const LAYOUTS: Record<string, Layout[]> = {
-  d: [
-    {
-      i: "parent",
-      x: 0,
-      y: 0,
-      w: Infinity,
-      h: 1,
-      static: true,
-      isResizable: true,
-    },
-    { i: "a", x: 0, y: 1, w: 3, h: 1 },
-    { i: "c", x: 30, y: 2, w: 10, h: 1 },
-  ],
-  b: [
-    {
-      i: "parent",
-      x: 0,
-      y: 0,
-      w: Infinity,
-      h: 1,
-      static: true,
-      isResizable: true,
-    },
-    { i: "a", x: 0, y: 1, w: 3, h: 1 },
-  ],
-  c: [
-    {
-      i: "parent",
-      x: 0,
-      y: 0,
-      w: Infinity,
-      h: 1,
-      static: true,
-      isResizable: true,
-    },
-  ],
-};
 
 const SingleGridLayout = ({ layout, width, updateLayout }: Props) => {
-  const layout2 = LAYOUTS[layout.i];
+  const LAYOUTS = useRecoilValue(appState);
+  const layout2 = LAYOUTS.nestedLayouts[layout.i];
   // console.log(layout.i);?
   // console.log("l2", layout2);?
   const { startDate, endDate } = issue;
@@ -71,7 +36,7 @@ const SingleGridLayout = ({ layout, width, updateLayout }: Props) => {
   }, [isCollapsed]);
 
   const onDragStart: ItemCallback = (...args) => {
-    args[4].stopPropagation();
+    // args[4].stopPropagation();
   };
 
   function createElement(layout: Layout) {
@@ -82,10 +47,10 @@ const SingleGridLayout = ({ layout, width, updateLayout }: Props) => {
         key={layout.i}
         data-grid={layout}
         onMouseDown={(e) => {
-          e.stopPropagation();
+          // e.stopPropagation();
         }}
         onTouchStart={(e) => {
-          e.stopPropagation();
+          // e.stopPropagation();
         }}
       >
         {isParent ? (

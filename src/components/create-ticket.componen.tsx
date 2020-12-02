@@ -26,10 +26,23 @@ const CreateTicketModal = ({ isOpen, onClose }: CreateTicketModalProps) => {
           y: Infinity, // puts it at the bottom
           w: Infinity,
           h: 1,
-          collapsed: false,
-          // resizeHandles: ['e', 'w']
         } as LayoutElement,
       ],
+      nestedLayouts: {
+        ...state.nestedLayouts,
+        [id]: [
+          {
+            i: "parent",
+            x: 0,
+            y: 0,
+            w: Infinity,
+            h: 1,
+            static: true,
+            isDraggable: true,
+            isResizable: true,
+          },
+        ] as LayoutElement[],
+      },
       tickets: {
         ...state.tickets,
         [id]: Ticket("nowy ticket"),
@@ -41,13 +54,17 @@ const CreateTicketModal = ({ isOpen, onClose }: CreateTicketModalProps) => {
     setAppState((state) => {
       const { [ticketId]: _, ...tickets } = state.tickets;
       const layout = state.layout.filter((l) => l.i !== ticketId);
+      const { [ticketId]: ignore, ...nestedLayouts } = state.nestedLayouts;
       return {
         ...state,
         tickets,
         layout,
+        nestedLayouts
       };
     });
   };
+
+  console.log("aasdasdasd", state);
   return (
     <div>
       {isOpen && (
@@ -92,7 +109,7 @@ const CreateTicketModal = ({ isOpen, onClose }: CreateTicketModalProps) => {
                     </div>
                     <div className="p-5">
                       {state.layout.map((l) => (
-                        <button onClick={() => removeTicket(l.i)}>
+                        <button onClick={() => removeTicket(l.i)} key={l.i}>
                           Remove {l.i}
                         </button>
                       ))}
