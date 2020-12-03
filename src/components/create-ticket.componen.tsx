@@ -15,7 +15,6 @@ const CreateTicketModal = ({ isOpen, onClose }: CreateTicketModalProps) => {
 
   const createNewTicket = () => {
     const id = `${new Date().getTime()}`;
-    console.log(id);
     setAppState((state) => ({
       ...state,
       layout: [
@@ -26,6 +25,7 @@ const CreateTicketModal = ({ isOpen, onClose }: CreateTicketModalProps) => {
           y: Infinity, // puts it at the bottom
           w: Infinity,
           h: 1,
+          resizeHandles: ['e','w']
         } as LayoutElement,
       ],
       nestedLayouts: {
@@ -36,6 +36,54 @@ const CreateTicketModal = ({ isOpen, onClose }: CreateTicketModalProps) => {
             x: 0,
             y: 0,
             w: Infinity,
+            h: 1,
+            static: true,
+            isDraggable: true,
+            isResizable: true,
+          },
+        ] as LayoutElement[],
+      },
+      tickets: {
+        ...state.tickets,
+        [id]: Ticket("nowy ticket"),
+      },
+    }));
+  };
+
+  const createNewNestedTicket = () => {
+    const id = `${new Date().getTime()}`;
+    setAppState((state) => ({
+      ...state,
+      layout: [
+        ...state.layout,
+        {
+          i: id,
+          x: 0,
+          y: Infinity, // puts it at the bottom
+          w: Infinity,
+          h: 1,
+          // resizeHandles: ['e','w']
+        } as LayoutElement,
+      ],
+      nestedLayouts: {
+        ...state.nestedLayouts,
+        [id]: [
+          {
+            i: "parent",
+            x: 0,
+            y: 0,
+            w: 48,
+            h: 1,
+            static: true,
+            isDraggable: true,
+            isResizable: true,
+
+          },
+          {
+            i: "13123",
+            x: 0,
+            y: 1,
+            w: 48,
             h: 1,
             static: true,
             isDraggable: true,
@@ -64,7 +112,6 @@ const CreateTicketModal = ({ isOpen, onClose }: CreateTicketModalProps) => {
     });
   };
 
-  console.log("aasdasdasd", state);
   return (
     <div>
       {isOpen && (
@@ -106,6 +153,8 @@ const CreateTicketModal = ({ isOpen, onClose }: CreateTicketModalProps) => {
                   <div className="flex flex-col flex-start">
                     <div className="p-5">
                       <button onClick={createNewTicket}>Add new item</button>
+                      <button onClick={createNewNestedTicket}>Add new item nested</button>
+
                     </div>
                     <div className="p-5">
                       {state.layout.map((l) => (

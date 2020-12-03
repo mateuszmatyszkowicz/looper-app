@@ -28,7 +28,6 @@ function App() {
   const [appstate, setAppState] = useRecoilState(appState);
 
   useEffect(() => {
-    console.log("LocalStorage: ", state);
     setAppState(state);
     // eslint-disable-next-line
   }, []);

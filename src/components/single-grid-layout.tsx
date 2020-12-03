@@ -1,7 +1,7 @@
 import * as React from "react";
 import GridLayout, { ItemCallback, Layout } from "react-grid-layout";
 import { differenceInCalendarDays } from "date-fns";
-import {  useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { appState } from "../atoms";
 
 type Props = {
@@ -15,9 +15,9 @@ const issue = {
   endDate: new Date(2020, 9, 3),
 };
 
-
 const SingleGridLayout = ({ layout, width, updateLayout }: Props) => {
   const LAYOUTS = useRecoilValue(appState);
+  const setLayout = useSetRecoilState(appState);
   const layout2 = LAYOUTS.nestedLayouts[layout.i];
   // console.log(layout.i);?
   // console.log("l2", layout2);?
@@ -26,6 +26,7 @@ const SingleGridLayout = ({ layout, width, updateLayout }: Props) => {
 
   React.useEffect(() => {
     if (isCollapsed) {
+     
       updateLayout({ ...layout, h: 1 });
     } else {
       const newHeigh = layout2.reduce((prev, curr) => prev + curr.h, 0);
@@ -35,8 +36,19 @@ const SingleGridLayout = ({ layout, width, updateLayout }: Props) => {
     // eslint-disable-next-line
   }, [isCollapsed]);
 
+  const onLayoutChange = (newLayout: Layout[]) => {
+    setLayout((state) => ({
+      ...state,
+      nestedLayouts: {
+        ...state.nestedLayouts,
+        [layout.i]: newLayout,
+      },
+    }));
+    // console.log(newLayout);
+  };
+
   const onDragStart: ItemCallback = (...args) => {
-    // args[4].stopPropagation();
+    args[4].stopPropagation();
   };
 
   function createElement(layout: Layout) {
@@ -47,10 +59,10 @@ const SingleGridLayout = ({ layout, width, updateLayout }: Props) => {
         key={layout.i}
         data-grid={layout}
         onMouseDown={(e) => {
-          // e.stopPropagation();
+          e.stopPropagation();
         }}
         onTouchStart={(e) => {
-          // e.stopPropagation();
+          e.stopPropagation();
         }}
       >
         {isParent ? (
@@ -69,25 +81,23 @@ const SingleGridLayout = ({ layout, width, updateLayout }: Props) => {
             >
               <div style={{ width: 30, height: 30, background: "gray" }} />
             </div>
-            {layout2.length > 1 && (
-              <div
-                style={{
-                  position: "absolute",
-                  right: 0,
-                  top: 0,
-                  bottom: 0,
-                  display: "flex",
-                  height: "100%",
-                  background: "yellow",
-                  transform: "translateX(100%)",
-                }}
-                onClick={(e) => {
-                  setIsCollapsed(!isCollapsed);
-                }}
-              >
-                <div>{isCollapsed ? "collapsed" : "notcollapsed"}</div>
-              </div>
-            )}
+            <div
+              style={{
+                position: "absolute",
+                right: 0,
+                top: 0,
+                bottom: 0,
+                display: "flex",
+                height: "100%",
+                background: "yellow",
+                transform: "translateX(100%)",
+              }}
+              onClick={(e) => {
+                setIsCollapsed(!isCollapsed);
+              }}
+            >
+              <div>{isCollapsed ? "collapsed" : "notcollapsed"}</div>
+            </div>
           </>
         ) : null}
         <span className="text">{layout.i} as</span>
@@ -109,6 +119,7 @@ const SingleGridLayout = ({ layout, width, updateLayout }: Props) => {
       rowHeight={30}
       resizeHandles={["w", "e"]}
       onDragStart={onDragStart}
+      onLayoutChange={onLayoutChange}
     >
       {isCollapsed
         ? layout2.filter((l) => l.i === "parent").map((l) => createElement(l))

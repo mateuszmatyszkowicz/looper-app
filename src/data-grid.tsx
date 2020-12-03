@@ -47,7 +47,6 @@ const MyFirstGrid = () => {
   const [oneHeight, setOneHeight] = React.useState(1);
 
   const heightChanged = React.useCallback((id, height) => {
-    console.log("id: ", height);
     setLayout((layout) =>
       [...layout].map((i) => ({ ...i, h: i.i === id ? height : i.h }))
     );

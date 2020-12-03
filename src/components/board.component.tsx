@@ -6,8 +6,8 @@ import { LayoutElement } from "../types";
 import { useRecoilState } from "recoil";
 import { appState } from "../atoms";
 
-const startDate = new Date(2020, 8, 25);
-const endDate = new Date(2020, 9, 3);
+const startDate = new Date(2020, 8, 1);
+const endDate = new Date(2020, 8, 31);
 
 const Board = () => {
   const [state, setState] = useRecoilState(appState);
@@ -16,16 +16,21 @@ const Board = () => {
   const boardRef = React.useRef<HTMLDivElement>(null);
   const [boardWidth, setBoardWidth] = React.useState(600);
   const setLayoutState = (newLayout: Layout) => {
-    setState((state) => ({
-      ...state,
-      layout: state.layout.reduce((prev, curr) => {
-        if (curr.i === newLayout.i) {
-          return [...prev, newLayout];
-        }
+    setState(() => {
+      // console.log("state MDI", statex);
+      const newx = {
+        ...state,
+        layout: state.layout.reduce((prev, curr) => {
+          if (curr.i === newLayout.i) {
+            return [...prev, newLayout];
+          }
 
-        return [...prev, curr];
-      }, [] as Layout[]),
-    }));
+          return [...prev, curr];
+        }, [] as Layout[]),
+      };
+
+      return newx;
+    });
   };
 
   React.useEffect(() => {
@@ -41,9 +46,12 @@ const Board = () => {
     [viewCount, boardWidth]
   );
 
-  const onChildrenChanged = (newLayout: Layout) => {
-    setLayoutState(newLayout);
-  };
+  const onChildrenChanged = React.useCallback(
+    (newLayout: Layout) => {
+      setLayoutState(newLayout);
+    },
+    [state]
+  );
 
   const [, setIsDragging] = React.useState(false);
   const [, setIsResizing] = React.useState(false);
@@ -74,7 +82,7 @@ const Board = () => {
 
   React.useEffect(() => {
     setTimeout(() => {
-      console.log(mainGridRef.current?.getBoundingClientRect().height);
+      // console.log(mainGridRef.current?.getBoundingClientRect().height);
     }, 250);
   }, [layout]);
 
@@ -83,32 +91,40 @@ const Board = () => {
   };
 
   const createElement = (el: any) => {
+    // console.log("newste el", state.nestedLayouts[el.i].length);
     return (
       <div key={el.i} data-grid={el.datagrid} onClick={() => onItemClick(el.i)}>
-        {/* {el.i !== "c" ? (
-          <div>....</div>
+        {state.nestedLayouts[el.i].length === 1 ? (
+          <>
+            <div
+              style={{
+                position: "absolute",
+                left: -30,
+                top: 0,
+                bottom: 0,
+                display: "flex",
+                height: "100%",
+                background: "yellow",
+                transform: "translateX(-100%)",
+              }}
+            >
+              <div style={{ width: 30, height: 30, background: "gray" }} />
+            </div>
+
+            <span className="text">{el.i} as</span>
+          </>
         ) : (
           <SingleGridLayout
             layout={layout.filter((e) => e.i === el.i)[0]}
             width={memoWidth}
             updateLayout={onChildrenChanged}
           />
-        )} */}
-
-        <SingleGridLayout
-          layout={layout.filter((e) => e.i === el.i)[0]}
-          width={memoWidth}
-          updateLayout={onChildrenChanged}
-        />
+        )}
       </div>
     );
   };
 
-  console.log('stae',state)
-  if (state.layout === undefined) {
-    console.log('ada')
-    return null;
-  }
+  if (state.layout === undefined) return null;
 
   return (
     <div>
@@ -125,6 +141,12 @@ const Board = () => {
             7 days
           </div>
           <div
+            style={{ color: viewCount === 30 ? "green" : "black" }}
+            onClick={() => setViewCount(30)}
+          >
+            7 days
+          </div>
+          <div
             style={{ color: viewCount !== 7 ? "green" : "black" }}
             onClick={() =>
               setViewCount(differenceInCalendarDays(endDate, startDate))
@@ -137,7 +159,7 @@ const Board = () => {
       <div ref={boardRef} style={{ maxWidth: 600 }}>
         <div
           ref={mainGridRef}
-          style={{ position: "relative", width: memoWidth, paddingLeft: 130 }}
+          style={{ position: "relative", width: memoWidth, paddingLeft: 130, paddingRight: 40, boxSizing: 'content-box' }}
         >
           <GridLayout
             margin={[0, 5]}
